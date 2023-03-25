@@ -36,8 +36,13 @@ class Test_DemoClass:
     # setup -> test_demo2 -> teardown
     def test_demo2(self):
         assert True
+    
+    def getData():
+        #veriyi al
+        
+        return [("1","1") , ("kullaniciadim","sifrem"),("kodlamaio","123")]
 
-    @pytest.mark.parametrize("username,password",[("1","1") , ("kullaniciadim","sifrem")])
+    @pytest.mark.parametrize("username,password",getData())
     def test_invalid_login(self,username,password):
         self.waitForElementVisible((By.ID,"user-name"))
         usernameInput = self.driver.find_element(By.ID, "user-name")
