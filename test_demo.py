@@ -8,6 +8,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 import pytest
 from pathlib import Path
 from datetime import date
+import openpyxl
 #prefix => ön ek test_
 #postfix
 
@@ -39,8 +40,18 @@ class Test_DemoClass:
     
     def getData():
         #veriyi al
-        
-        return [("1","1") , ("kullaniciadim","sifrem"),("kodlamaio","123")]
+        excelFile = openpyxl.load_workbook("data/invalid_login.xlsx")
+        selectedSheet = excelFile["Sheet1"]
+
+        totalRows = selectedSheet.max_row
+        data=[]
+        for i in range(2, totalRows+1):
+            username = selectedSheet.cell(i,1).value
+            password = selectedSheet.cell(i,2).value
+            tupleData = (username,password)
+            data.append(tupleData)
+
+        return data
 
     @pytest.mark.parametrize("username,password",getData())
     def test_invalid_login(self,username,password):
