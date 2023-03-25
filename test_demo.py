@@ -70,3 +70,6 @@ class Test_DemoClass:
         assert errorMessage.text == "Epic sadface: Username and password do not match any user in this service"
     def waitForElementVisible(self,locator,timeout=5):
         WebDriverWait(self.driver,timeout).until(ec.visibility_of_element_located(locator))
+
+
+        #22:00'da dersteyiz
